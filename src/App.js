@@ -82,7 +82,7 @@ export default function App() {
   // ---------------- RANDOM ANIME
   useEffect(() => {
     async function getRandomAnime() {
-      let res = await fetch(url + "/recommendations/anime");
+      let res = await fetch(url + "/top/anime");
 
       res = await res.json();
       const animeList = [];
