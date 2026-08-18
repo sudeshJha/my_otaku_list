@@ -85,13 +85,8 @@ export default function App() {
       let res = await fetch(url + "/top/anime");
 
       res = await res.json();
-      const animeList = [];
 
-      res.data.forEach((el) => {
-        animeList.push(el.entry[0], el.entry[1]);
-      });
-
-      setRandomAnime([...animeList]);
+      setRandomAnime(res.data);
     }
     setIsLoading(true);
     getRandomAnime();

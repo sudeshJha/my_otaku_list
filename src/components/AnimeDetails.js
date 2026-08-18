@@ -36,7 +36,7 @@ const AnimeDetails = ({ animeId, handleBackButton, addAnime, myAnimeList }) => {
     setIsLoading(true);
     async function getAnimeDetails() {
       try {
-        let res = await fetch(`${url}/anime/${animeId}/full`);
+        let res = await fetch(`${url}/anime/${animeId}`);
         res = await res.json();
 
         setAnime(res.data);
@@ -65,10 +65,10 @@ const AnimeDetails = ({ animeId, handleBackButton, addAnime, myAnimeList }) => {
             <img src={anime.images.jpg.large_image_url} alt="Anime Poster" />
 
             <div className="anime-detail-card">
-              {anime.streaming.length !== 0 ? (
+              {anime.streaming?.length !== 0 ? (
                 <>
                   <h3>Streaming</h3>
-                  {anime.streaming.map((st, i) => (
+                  {anime.streaming?.map((st, i) => (
                     <a key={i} href={st.url} target="blank" rel="noopener">
                       {st.name}
                     </a>
@@ -117,7 +117,8 @@ const AnimeDetails = ({ animeId, handleBackButton, addAnime, myAnimeList }) => {
                 <li>
                   Genre :{" "}
                   <span>
-                    {anime.genres.map((gen, i) => gen.name).join(", ") || "N/A"}
+                    {anime.genres?.map((gen, i) => gen.name)?.join(", ") ||
+                      "N/A"}
                   </span>
                 </li>
               </ul>
